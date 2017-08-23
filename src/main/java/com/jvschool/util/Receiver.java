@@ -27,9 +27,11 @@ import java.util.Hashtable;
 @Singleton
 public class Receiver {
 
-    QueueConnection connection;
-    QueueSession session;
-    QueueReceiver receiver;
+    private QueueConnection connection;
+    private QueueSession session;
+    private QueueReceiver receiver;
+
+  //  private boolean changed = true;
 
     @EJB
     private ProductsDTO productsDTO;
@@ -63,7 +65,6 @@ public class Receiver {
         }
 
         topReview();
-
     }
 
     public void topReview() {
@@ -80,6 +81,9 @@ public class Receiver {
 
         log.info("top review");
         productsDTO = response.getEntity(ProductsDTO.class);
+        productsDTO.setChanged(true);
+
+
     }
 
     @PreDestroy
@@ -91,7 +95,6 @@ public class Receiver {
             connection.close();
         } catch (JMSException e) {
             log.info(e.toString());
-            //e.printStackTrace();
         }
 
     }
@@ -103,4 +106,12 @@ public class Receiver {
     public void setProductsDTO(ProductsDTO productsDTO) {
         this.productsDTO = productsDTO;
     }
+
+//    public boolean isChanged() {
+//        return changed;
+//    }
+//
+//    public void setChanged(boolean changed) {
+//        this.changed = changed;
+//    }
 }

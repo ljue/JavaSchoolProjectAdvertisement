@@ -17,19 +17,18 @@
       <scope>test</scope>
     </dependency>
 
-      <dependency>
-          <groupId>javax</groupId>
-          <artifactId>javaee-api</artifactId>
-          <version>7.0</version>
-      </dependency>
+  <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-api</artifactId>
+      <version>7.0</version>
+  </dependency>
 
-
-      <dependency>
-          <groupId>javax.faces</groupId>
-          <artifactId>javax.faces-api</artifactId>
-          <version>2.3</version>
-          <scope>provided</scope>
-      </dependency>
+      <!--<dependency>-->
+          <!--<groupId>javax.faces</groupId>-->
+          <!--<artifactId>javax.faces-api</artifactId>-->
+          <!--<version>2.3</version>-->
+          <!--<scope>provided</scope>-->
+      <!--</dependency>-->
 
       <dependency>
           <groupId>com.sun.jersey</groupId>
@@ -62,18 +61,30 @@
           <version>1.2.17</version>
       </dependency>
 
-
       <dependency>
           <groupId>org.richfaces</groupId>
           <artifactId>richfaces-a4j</artifactId>
           <version>4.5.17.Final</version>
       </dependency>
 
+      <dependency>
+          <groupId>org.jboss.spec.javax.faces</groupId>
+          <artifactId>jboss-jsf-api_2.2_spec</artifactId>
+          <version>2.2.13</version>
+      </dependency>
 
       <dependency>
           <groupId>org.primefaces</groupId>
           <artifactId>primefaces</artifactId>
           <version>5.3</version>
+      </dependency>
+
+
+      <dependency>
+          <groupId>org.primefaces.extensions</groupId>
+          <artifactId>all-themes</artifactId>
+          <version>1.0.8</version>
+          <type>pom</type>
       </dependency>
 
       <dependency>
@@ -90,20 +101,8 @@
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-compiler-plugin</artifactId>
               <configuration>
-                  <source>1.7</source>
-                  <target>1.7</target>
-              </configuration>
-          </plugin>
-          <plugin>
-              <groupId>org.wildfly.plugins</groupId>
-              <artifactId>wildfly-maven-plugin</artifactId>
-              <version>1.0.2.Final</version>
-              <configuration>
-                  <hostname>localhost</hostname>
-                  <!--<port>8080</port>-->
-                  <name>my-webapp</name>
-                  <!--<username>manager</username>-->
-                  <!--<password>manager</password>-->
+                  <source>1.8</source>
+                  <target>1.8</target>
               </configuration>
           </plugin>
       </plugins>

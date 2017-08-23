@@ -1,34 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:a4j="http://richfaces.org/a4j"
->
-<h:head>
-    <title>Advertisement</title>
-    <meta http-equiv="Content-Type"	content="application/xhtml+xml; charset=UTF-8" />
-
-</h:head>
-<h:body>
-    <h:form>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:a4j="http://richfaces.org/a4j">
+<h:head></h:head>
+<body>
+<h:form>
     Top quadcopters
 
-    <h:dataTable id="top" value="#{topListener.productsDTO.products}" var="product">
-        <h:column>#{product.productId}</h:column>
-        <h:column>#{product.productName}</h:column>
-        <h:column>#{product.cost}</h:column>
+    <!--<h:form>-->
+    <!--<a4j:poll id="poll" interval="1000" enabled="#{topListener.changed}" render="poll, top"/>-->
+    <!--</h:form>-->
+    <h:dataTable id="top" value="#{topListener.productsDTO.products}" var="product" >
+
+            <h:column>
+                <o:graphicImage value="#{imageBean.getImage(product.productId)}" height="100" width="100"/><br></br>
+                <h:outputLink value="http://localhost:8080/my-webapp/home">
+                <h:outputText id="productName" value="#{product.presentProductName}"/>
+                </h:outputLink><br></br>
+                <h:outputText value=" #{product.cost}"/><br></br>
+                <p:tooltip value="#{product.productName}" for="productName"/>
+            </h:column>
     </h:dataTable>
-        <!--<h:form>-->
-            <a4j:poll id="poll" interval="1000" render="poll,top"/>
-            <!--<p:poll interval="1" update="top" ></p:poll>-->
-        <!--</h:form>-->
 
-        <!--<o:socket channel="someChannel" onmessage="socketListener" />-->
-        <!--<o:commandScript name="socketListener" render="top"/>-->
+    <!--<script type="text/javascript">-->
+    <!--new RichFaces.ui.Poll("j_idt4:poll",{"ontimer":function(event){RichFaces.ajax("j_idt4:poll",event,{"incId":"1"} )},"enabled":true} )-->
+    <!--</script>-->
 
-        <!--<script type="text/javascript">-->
-            <!--function socketListener(message, channel, event) {-->
-                <!--console.log(message);-->
-            <!--}-->
-        <!--</script>-->
-    </h:form>
-</h:body>
+    <!--rendered="#{topListener.changed}"-->
+    <!--stop="#{topListener.changed}"-->
+    <p:poll interval="1" update="top" />
+
+    <!--<o:socket channel="someChannel" onmessage="socketListener" />-->
+    <!--<o:commandScript name="socketListener" render="top"/>-->
+
+    <!--<script type="text/javascript">-->
+    <!--function socketListener(message, channel, event) {-->
+    <!--console.log(message);-->
+    <!--}-->
+    <!--</script>-->
+</h:form>
+</body>
 </html>

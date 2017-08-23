@@ -3,13 +3,13 @@ package com.jvschool.view;
 import com.jvschool.dto.ProductsDTO;
 import com.jvschool.util.Receiver;
 import lombok.extern.log4j.Log4j;
-import org.omnifaces.cdi.Push;
+//import org.omnifaces.cdi.Push;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import javax.faces.push.PushContext;
+//import javax.faces.push.PushContext;
 import javax.inject.Inject;
 import javax.jms.Message;
 import javax.jms.MessageListener;
@@ -20,8 +20,6 @@ import java.io.Serializable;
 @ManagedBean(name = "topListener")
 public class MyMessageListener implements MessageListener, Serializable {
 
-
-    private ProductsDTO productsDTO;
     @EJB
     private Receiver receiver;
 
@@ -48,14 +46,30 @@ public class MyMessageListener implements MessageListener, Serializable {
 
         log.info("Message received");
         receiver.topReview();
+      //  receiver.getProductsDTO().setChanged(true);
 //        someChannel.send(message);
+
     }
 
     public ProductsDTO getProductsDTO() {
+        log.info("be polled");
+        boolean b = receiver.getProductsDTO().isChanged();
+        if(b) {
+            receiver.getProductsDTO().setChanged(false);
+        }
         return receiver.getProductsDTO();
     }
 
     public void setProductsDTO(ProductsDTO productsDTO) {
         receiver.setProductsDTO(productsDTO);
+    }
+
+    public boolean isChanged() {
+        log.info("poll enabled?");
+        return receiver.getProductsDTO().isChanged();
+    }
+
+    public void setChanged(boolean changed) {
+        receiver.getProductsDTO().setChanged(changed);
     }
 }

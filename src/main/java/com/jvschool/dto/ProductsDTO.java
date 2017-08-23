@@ -1,5 +1,7 @@
 package com.jvschool.dto;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 import javax.annotation.PostConstruct;
@@ -11,19 +13,14 @@ import java.io.Serializable;
 import java.util.List;
 
 @Log4j
+@Getter
+@Setter
 @Singleton
 public class ProductsDTO  implements Serializable {
 
     private List<ProductDTO> products;
 
-
-    public List<ProductDTO> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<ProductDTO> products) {
-        this.products = products;
-    }
+    private boolean changed = true;
 
     @PostConstruct
     public void onStart() {
