@@ -31,10 +31,12 @@ public class Receiver {
     private QueueSession session;
     private QueueReceiver receiver;
 
-  //  private boolean changed = true;
-
     @EJB
     private ProductsDTO productsDTO;
+
+    public Receiver() {
+        log.info("receiver created");
+    }
 
     @PostConstruct
     public void receive() {
@@ -81,9 +83,6 @@ public class Receiver {
 
         log.info("top review");
         productsDTO = response.getEntity(ProductsDTO.class);
-        productsDTO.setChanged(true);
-
-
     }
 
     @PreDestroy
@@ -107,11 +106,4 @@ public class Receiver {
         this.productsDTO = productsDTO;
     }
 
-//    public boolean isChanged() {
-//        return changed;
-//    }
-//
-//    public void setChanged(boolean changed) {
-//        this.changed = changed;
-//    }
 }

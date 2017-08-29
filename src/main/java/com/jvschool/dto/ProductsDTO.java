@@ -20,8 +20,6 @@ public class ProductsDTO  implements Serializable {
 
     private List<ProductDTO> products;
 
-    private boolean changed = true;
-
     @PostConstruct
     public void onStart() {
         log.info("DTO list construct");

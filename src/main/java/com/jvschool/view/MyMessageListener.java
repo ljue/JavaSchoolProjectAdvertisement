@@ -6,6 +6,7 @@ import lombok.extern.log4j.Log4j;
 //import org.omnifaces.cdi.Push;
 
 import javax.ejb.EJB;
+import javax.ejb.Singleton;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -23,13 +24,6 @@ public class MyMessageListener implements MessageListener, Serializable {
     @EJB
     private Receiver receiver;
 
-//    @Inject
-//    @Push(channel = "someChannel")
-//    private PushContext someChannel;
-
-//    public void sendMessage(Object message) {
-//        someChannel.send(message);
-//    }
 
 
     public MyMessageListener(Receiver receiver) {
@@ -46,17 +40,11 @@ public class MyMessageListener implements MessageListener, Serializable {
 
         log.info("Message received");
         receiver.topReview();
-      //  receiver.getProductsDTO().setChanged(true);
-//        someChannel.send(message);
 
     }
 
     public ProductsDTO getProductsDTO() {
         log.info("be polled");
-        boolean b = receiver.getProductsDTO().isChanged();
-        if(b) {
-            receiver.getProductsDTO().setChanged(false);
-        }
         return receiver.getProductsDTO();
     }
 
@@ -64,12 +52,4 @@ public class MyMessageListener implements MessageListener, Serializable {
         receiver.setProductsDTO(productsDTO);
     }
 
-    public boolean isChanged() {
-        log.info("poll enabled?");
-        return receiver.getProductsDTO().isChanged();
-    }
-
-    public void setChanged(boolean changed) {
-        receiver.getProductsDTO().setChanged(changed);
-    }
 }

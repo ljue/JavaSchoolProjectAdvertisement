@@ -14,16 +14,21 @@ public class ImageBean {
     @EJB
     private Receiver receiver;
 
+
     public byte[] getImage(final Long productId) {
 
-        ProductDTO productDTO = receiver.getProductsDTO().getProducts().stream()
-                .filter(x -> productId.equals(x.getProductId()))
-                .findFirst()
-                .orElse(null);
+        if (productId!=null && !receiver.getProductsDTO().getProducts().isEmpty()) {
 
-        if (productDTO!=null) {
-            return productDTO.getPicture();
+            ProductDTO productDTO = receiver.getProductsDTO().getProducts().stream()
+                    .filter(x -> productId.equals(x.getProductId()))
+                    .findFirst()
+                    .orElse(null);
+
+            if (productDTO != null) {
+                return productDTO.getPicture();
+            } else return null;
         }
         else return null;
     }
+
 }
