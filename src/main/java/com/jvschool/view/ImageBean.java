@@ -17,7 +17,7 @@ public class ImageBean {
 
     public byte[] getImage(final Long productId) {
 
-        if (productId!=null && !receiver.getProductsDTO().getProducts().isEmpty()) {
+        if (productId != null && receiver.getProductsDTO() != null && !receiver.getProductsDTO().getProducts().isEmpty()) {
 
             ProductDTO productDTO = receiver.getProductsDTO().getProducts().stream()
                     .filter(x -> productId.equals(x.getProductId()))
@@ -27,8 +27,7 @@ public class ImageBean {
             if (productDTO != null) {
                 return productDTO.getPicture();
             } else return null;
-        }
-        else return null;
+        } else return null;
     }
 
 }

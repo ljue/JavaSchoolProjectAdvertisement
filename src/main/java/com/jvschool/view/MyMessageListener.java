@@ -24,8 +24,6 @@ public class MyMessageListener implements MessageListener, Serializable {
     @EJB
     private Receiver receiver;
 
-
-
     public MyMessageListener(Receiver receiver) {
         this.receiver=receiver;
         log.info("Listener receiver created");
@@ -44,7 +42,6 @@ public class MyMessageListener implements MessageListener, Serializable {
     }
 
     public ProductsDTO getProductsDTO() {
-        log.info("be polled");
         return receiver.getProductsDTO();
     }
 

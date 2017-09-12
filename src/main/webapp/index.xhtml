@@ -9,18 +9,6 @@
 <body>
 <h:form>
 
-    <!--<h:dataTable id="top" value="#{topListener.productsDTO.products}" var="product" >-->
-
-    <!--<h:column>-->
-    <!--<o:graphicImage value="#{imageBean.getImage(product.productId)}" height="100" width="100"/><br></br>-->
-    <!--<h:outputLink value="http://localhost:8080/my-webapp/home">-->
-    <!--<h:outputText id="productName" value="#{product.presentProductName}"/>-->
-    <!--</h:outputLink><br></br>-->
-    <!--<h:outputText value=" #{product.cost}"/><br></br>-->
-    <!--<p:tooltip value="#{product.productName}" for="productName"/>-->
-    <!--</h:column>-->
-    <!--</h:dataTable>-->
-
     <p:dataGrid var="product" value="#{topListener.productsDTO.products}" columns="3" layout="grid"
                 rows="9" id="top">
 
@@ -32,7 +20,7 @@
             <div style="text-align: center;">
             <h:panelGrid columns="1" style="width:100%">
                 <o:graphicImage value="#{imageBean.getImage(product.productId)}" height="250" width="250"/>
-                <h:outputLink value="http://localhost:8080/my-webapp/home">
+                <h:outputLink value="http://localhost:8080/favcopters/catalog/product/#{product.productId}">
                     <h:outputText id="productName" value="#{product.productName}"/>
                 </h:outputLink>
                 <h:outputText value=" #{product.cost}$"/><br></br>

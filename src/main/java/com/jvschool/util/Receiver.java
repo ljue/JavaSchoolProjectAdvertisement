@@ -74,7 +74,7 @@ public class Receiver {
         clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
 
         Client client = Client.create(clientConfig);
-        WebResource webResource = client.resource("http://localhost:8080/my-webapp/advertisement/top");
+        WebResource webResource = client.resource("http://localhost:8080/favcopters/advertisement/top");
 
         ClientResponse response = webResource
                 .accept(MediaType.APPLICATION_JSON)

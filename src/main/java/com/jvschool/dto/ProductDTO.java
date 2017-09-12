@@ -15,16 +15,20 @@ public class ProductDTO  implements Serializable {
     private long productId;
     private String productName;
     private String presentProductName;
-    private double cost;
+    private String cost;
     private byte[] picture;
 
 
     public void setPicture(String picture) {
-        this.picture = DatatypeConverter.parseBase64Binary(picture);
+        if(picture!=null)
+            this.picture = DatatypeConverter.parseBase64Binary(picture);
     }
 
     public void setProductName(String productName) {
-        this.productName = productName;
-        this.presentProductName = this.productName.substring(0, this.productName.substring(0,15).lastIndexOf(" ")) + "...";
+
+        if(productName!=null) {
+            this.productName = productName;
+            this.presentProductName = this.productName.substring(0, this.productName.substring(0,25).lastIndexOf(" ")) + "...";
+        }
     }
 }
