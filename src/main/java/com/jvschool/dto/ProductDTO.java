@@ -28,7 +28,13 @@ public class ProductDTO  implements Serializable {
 
         if(productName!=null) {
             this.productName = productName;
-            this.presentProductName = this.productName.substring(0, this.productName.substring(0,25).lastIndexOf(" ")) + "...";
+
+            if (this.productName.length()>25) {
+                this.presentProductName = this.productName.substring(0, this.productName.substring(0,25).lastIndexOf(" ")) + "...";
+            } else {
+                this.presentProductName = this.productName;
+            }
+
         }
     }
 }
